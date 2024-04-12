@@ -1,4 +1,8 @@
 "use client"
+import Commands from "@/components/Commands"
+import Date from "@/components/Date"
+import UserInput from "@/components/UserInput"
+import Welcome from "@/components/Welcome"
 import { commands } from "@/constants/constants"
 import { getCurrentDateAndDay, getCurrentTime } from "@/utlis/datetime"
 import {
@@ -15,9 +19,25 @@ import {
   Text,
   TextInput,
 } from "@mantine/core"
+import { useForm } from "@mantine/form"
 import { ArrowRight, Atom, File, Folder, Terminal } from "@phosphor-icons/react"
 import { ArrowFatLineRight } from "@phosphor-icons/react/dist/ssr"
 import { useEffect, useState } from "react"
+
+export const defaultPath = (
+  <Group gap={0}>
+    <Text>|---</Text>
+    <Box bg="#2682ea" c="#fff" px="sm">
+      <Text>~/agrim</Text>
+    </Box>
+    <Box bg="#44a244" c="#fff" px="sm">
+      <Group gap={0}>
+        <Folder size={20} />
+        <Text>/portfolio</Text>
+      </Group>
+    </Box>
+  </Group>
+)
 
 export default function Home() {
   const { date, day } = getCurrentDateAndDay()
@@ -28,39 +48,48 @@ export default function Home() {
   const [data, setData] = useState<any>()
 
   const [rows, setRows] = useState<any>([{}])
-  const defaultPath = (
-    <Group gap={0}>
-      <Text>|---</Text>
-      <Box bg="#2682ea" c="#fff" px="sm">
-        <Text>~/agrim</Text>
-      </Box>
-      <Box bg="#44a244" c="#fff" px="sm">
-        <Group gap={0}>
-          <Folder size={20} />
-          <Text>/portfolio</Text>
-        </Group>
-      </Box>
-    </Group>
-  )
+
+  const form = useForm({
+    initialValues: {
+      userInput: "",
+    },
+    validate: {
+      userInput: (value) =>
+        value.length < 2 ? "Name must have at least 2 letters" : null,
+    },
+  })
+
+  const [userInput, setUserInput] = useState<string>("")
 
   const inputRow = {
     currTime: time,
     path: defaultPath,
     data: (
-      <form>
-        <input
-          type="text"
+      <form
+        onSubmit={form.onSubmit((values) => {
+          console.log(values)
+        })}
+      >
+        <TextInput
+          w={600}
           placeholder="Type help to view list of commands"
-          style={{
-            background: "none",
-            outline: "none",
-            color: "#fff",
-            border: "none",
-            width: "600px",
-            padding: "5px",
-          }}
+          {...form.getInputProps("userInput")}
         />
       </form>
+      // <form
+      //   onSubmit={(e) => {
+      //     e.preventDefault()
+      //     console.log(userInput)
+      //   }}
+      // >
+      //   <input
+      //     type="text"
+      //     placeholder="Type"
+      //     value={userInput}
+      //     onChange={(e) => setUserInput(e.target.value)}
+      //     style={{ width: 600 }}
+      //   />
+      // </form>
     ),
   }
 
@@ -91,7 +120,7 @@ export default function Home() {
       path: defaultPath,
       data: commands.map((command, index) => (
         <Stack gap={10} key={index}>
-          <Grid>
+          <Grid gutter={0}>
             <Grid.Col span={2}>
               <Text c="#fde745">{command.cmd}</Text>
             </Grid.Col>
@@ -105,6 +134,7 @@ export default function Home() {
 
     setRows([firstRow, welcomeRow, cmdRow, inputRow])
   }, [])
+
   return (
     <Box>
       <BackgroundImage
@@ -120,7 +150,7 @@ export default function Home() {
         }}
       >
         <Flex
-          w={1000}
+          w={{ base: "90%", md: 1000 }}
           h={50}
           bg="#3b3b3f"
           justify="space-between"
@@ -142,7 +172,7 @@ export default function Home() {
         </Flex>
 
         <ScrollArea
-          w={1000}
+          w={{ base: "90%", md: 1000 }}
           h={500}
           p="sm"
           c="#fff"
@@ -151,8 +181,8 @@ export default function Home() {
             borderRadius: "0 0 10px 10px",
           }}
         >
-          <Stack gap={20}>
-            {rows.map((item: any, index: any) => (
+          <Stack gap={20} m={0} style={{ margin: 0 }}>
+            {/* {rows.map((item: any, index: any) => (
               <Box key={index}>
                 <Stack gap={10}>
                   <Group justify="space-between">
@@ -161,19 +191,36 @@ export default function Home() {
                       <Text>{item.currTime}</Text>
                     </Box>
                   </Group>
-                  <Stack gap={5}>
-                    <Group gap={0} align="center">
-                      {index === 0 ? <></> : <ArrowFatLineRight size={20} />}
+                  {index < 3 ? (
+                    <Stack gap={5}>
+                      <Group gap={0} align="center">
+                        {index === 0 ? <></> : <ArrowFatLineRight size={20} />}
+                      </Group>
+                      {index === 0 || index === 1 ? (
+                        <Box>{item.data}</Box>
+                      ) : (
+                        <Box pl={30}>{item.data}</Box>
+                      )}
+                    </Stack>
+                  ) : (
+                    <Group gap={0}>
+                      <Group gap={0} align="center">
+                        {index === 0 ? <></> : <ArrowFatLineRight size={20} />}
+                      </Group>
+                      {index === 0 || index === 1 ? (
+                        <Box>{item.data}</Box>
+                      ) : (
+                        <Box pl={30}>{item.data}</Box>
+                      )}
                     </Group>
-                    {index === 0 || index === 1 ? (
-                      <Box>{item.data}</Box>
-                    ) : (
-                      <Box pl={30}>{item.data}</Box>
-                    )}
-                  </Stack>
+                  )}
                 </Stack>
               </Box>
-            ))}
+            ))} */}
+            <Date />
+            <Welcome />
+            <Commands />
+            <UserInput />
           </Stack>
         </ScrollArea>
       </BackgroundImage>
