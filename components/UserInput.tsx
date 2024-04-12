@@ -1,18 +1,46 @@
 "use client"
 import { defaultPath } from "@/app/page"
-import { commands } from "@/constants/constants"
 import { getCurrentTime } from "@/utlis/datetime"
-import { Box, Grid, Group, Stack, Text, TextInput } from "@mantine/core"
+import { Box, Group, Stack, Text, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { ArrowFatLineRight } from "@phosphor-icons/react"
 import React from "react"
 
-function UserInput() {
+function UserInput({ rowIds, setRowIds }: any) {
   const form = useForm({
     initialValues: {
       userInput: "",
     },
   })
+
+  const handleSubmit = (values: any) => {
+    switch (values.userInput) {
+      case "help":
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 9])
+        break
+      case "bio":
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 5])
+        break
+      case "skill":
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 6])
+
+        break
+      case "contact":
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 7])
+
+        break
+      case "about":
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 8])
+
+        break
+      case "cls":
+        setRowIds([4])
+        break
+
+      default:
+        setRowIds((prevRowIds: number[]) => [...prevRowIds, 10])
+    }
+  }
   return (
     <Stack gap={10}>
       <Group justify="space-between">
@@ -26,6 +54,7 @@ function UserInput() {
         <form
           onSubmit={form.onSubmit((values) => {
             console.log(values)
+            handleSubmit(values)
           })}
         >
           <TextInput

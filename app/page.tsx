@@ -1,27 +1,24 @@
 "use client"
+import About from "@/components/About"
+import Bio from "@/components/Bio"
 import Commands from "@/components/Commands"
+import Contact from "@/components/Contact"
 import Date from "@/components/Date"
+import Help from "@/components/Help"
+import Skill from "@/components/Skill"
 import UserInput from "@/components/UserInput"
 import Welcome from "@/components/Welcome"
-import { commands } from "@/constants/constants"
-import { getCurrentDateAndDay, getCurrentTime } from "@/utlis/datetime"
 import {
   BackgroundImage,
   Box,
   Flex,
-  Grid,
   Group,
-  Paper,
   ScrollArea,
-  SimpleGrid,
   Space,
   Stack,
   Text,
-  TextInput,
 } from "@mantine/core"
-import { useForm } from "@mantine/form"
-import { ArrowRight, Atom, File, Folder, Terminal } from "@phosphor-icons/react"
-import { ArrowFatLineRight } from "@phosphor-icons/react/dist/ssr"
+import { Atom, Folder } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 
 export const defaultPath = (
@@ -40,100 +37,64 @@ export const defaultPath = (
 )
 
 export default function Home() {
-  const { date, day } = getCurrentDateAndDay()
-  const time = getCurrentTime()
+  const [rowIds, setRowIds] = useState<number[]>([1, 2, 3, 4])
 
-  const [currTime, setCurrTime] = useState<string>("")
-  const [path, setPath] = useState<any>()
-  const [data, setData] = useState<any>()
-
-  const [rows, setRows] = useState<any>([{}])
-
-  const form = useForm({
-    initialValues: {
-      userInput: "",
-    },
-    validate: {
-      userInput: (value) =>
-        value.length < 2 ? "Name must have at least 2 letters" : null,
-    },
-  })
-
-  const [userInput, setUserInput] = useState<string>("")
-
-  const inputRow = {
-    currTime: time,
-    path: defaultPath,
-    data: (
-      <form
-        onSubmit={form.onSubmit((values) => {
-          console.log(values)
-        })}
-      >
-        <TextInput
-          w={600}
-          placeholder="Type help to view list of commands"
-          {...form.getInputProps("userInput")}
-        />
-      </form>
-      // <form
-      //   onSubmit={(e) => {
-      //     e.preventDefault()
-      //     console.log(userInput)
-      //   }}
-      // >
-      //   <input
-      //     type="text"
-      //     placeholder="Type"
-      //     value={userInput}
-      //     onChange={(e) => setUserInput(e.target.value)}
-      //     style={{ width: 600 }}
-      //   />
-      // </form>
-    ),
+  const renderComponent = (rowId: number) => {
+    switch (rowId) {
+      case 1:
+        return <Date />
+      case 2:
+        return <Welcome />
+      case 3:
+        return <Commands />
+      case 4:
+        return <UserInput id={rowId} setRowIds={setRowIds} />
+      case 5:
+        return (
+          <Stack gap={20}>
+            <Bio />
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      case 6:
+        return (
+          <Stack gap={20}>
+            <Skill />
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      case 7:
+        return (
+          <Stack gap={20}>
+            <Contact />
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      case 8:
+        return (
+          <Stack gap={20}>
+            <About />
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      case 9:
+        return (
+          <Stack gap={20}>
+            <Help />
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      case 10:
+        return (
+          <Stack gap={20}>
+            <Text>Invalid input. Type help to view list of commands.</Text>
+            <UserInput id={rowId} setRowIds={setRowIds} />
+          </Stack>
+        )
+      default:
+        return null
+    }
   }
-
-  useEffect(() => {
-    const firstRow = {
-      currTime: "",
-      path: "",
-      data: (
-        <Group gap={15}>
-          <Text>{day}</Text>
-          <Text>{date}</Text>
-        </Group>
-      ),
-    }
-
-    const welcomeRow = {
-      currTime: getCurrentTime(),
-      path: defaultPath,
-      data: (
-        <Text fz={60} fw={800}>
-          WELCOME TO MY PORTFOLIO
-        </Text>
-      ),
-    }
-
-    const cmdRow = {
-      currTime: time,
-      path: defaultPath,
-      data: commands.map((command, index) => (
-        <Stack gap={10} key={index}>
-          <Grid gutter={0}>
-            <Grid.Col span={2}>
-              <Text c="#fde745">{command.cmd}</Text>
-            </Grid.Col>
-            <Grid.Col span="auto">
-              <Text>{command.desc}</Text>
-            </Grid.Col>
-          </Grid>
-        </Stack>
-      )),
-    }
-
-    setRows([firstRow, welcomeRow, cmdRow, inputRow])
-  }, [])
 
   return (
     <Box>
@@ -182,45 +143,9 @@ export default function Home() {
           }}
         >
           <Stack gap={20} m={0} style={{ margin: 0 }}>
-            {/* {rows.map((item: any, index: any) => (
-              <Box key={index}>
-                <Stack gap={10}>
-                  <Group justify="space-between">
-                    {item.path}
-                    <Box bg="#fde745" c="#000" px="sm">
-                      <Text>{item.currTime}</Text>
-                    </Box>
-                  </Group>
-                  {index < 3 ? (
-                    <Stack gap={5}>
-                      <Group gap={0} align="center">
-                        {index === 0 ? <></> : <ArrowFatLineRight size={20} />}
-                      </Group>
-                      {index === 0 || index === 1 ? (
-                        <Box>{item.data}</Box>
-                      ) : (
-                        <Box pl={30}>{item.data}</Box>
-                      )}
-                    </Stack>
-                  ) : (
-                    <Group gap={0}>
-                      <Group gap={0} align="center">
-                        {index === 0 ? <></> : <ArrowFatLineRight size={20} />}
-                      </Group>
-                      {index === 0 || index === 1 ? (
-                        <Box>{item.data}</Box>
-                      ) : (
-                        <Box pl={30}>{item.data}</Box>
-                      )}
-                    </Group>
-                  )}
-                </Stack>
-              </Box>
-            ))} */}
-            <Date />
-            <Welcome />
-            <Commands />
-            <UserInput />
+            {rowIds.map((rowId, index) => (
+              <Box key={index}>{renderComponent(rowId)}</Box>
+            ))}
           </Stack>
         </ScrollArea>
       </BackgroundImage>
