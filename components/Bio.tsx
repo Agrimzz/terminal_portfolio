@@ -18,6 +18,7 @@ import {
   InstagramLogo,
 } from "@phosphor-icons/react"
 import React from "react"
+import AnimateText from "./AnimateText"
 
 function Bio() {
   return (
@@ -50,13 +51,21 @@ function Bio() {
         <Text>bio</Text>
       </Group>
       <Box ml={35}>
-        <Text fz={18}>
+        <AnimateText
+          text="Hello I'm Agrim Pradhananga, a third-year BCA student with a passion
+          for frontend development. I'm dedicated to refining my skills,
+          crafting engaging user experiences, and staying updated with the
+          latest technologies to make meaningful contributions to web
+          development."
+          size={18}
+        />
+        {/* <Text fz={18}>
           Hello I'm Agrim Pradhananga, a third-year BCA student with a passion
           for frontend development. I'm dedicated to refining my skills,
           crafting engaging user experiences, and staying updated with the
           latest technologies to make meaningful contributions to web
           development.
-        </Text>
+        </Text> */}
         <SimpleGrid cols={2} mt={24}>
           <Group align="center" gap={10}>
             <Group gap={0}>

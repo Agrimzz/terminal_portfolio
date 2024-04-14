@@ -18,7 +18,6 @@ function UserInput({ rowIds, setRowIds }: any) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    // Focus the input element when the component mounts or updates
     if (inputRef.current) {
       inputRef.current.focus()
     }

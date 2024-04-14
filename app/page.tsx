@@ -1,5 +1,6 @@
 "use client"
 import About from "@/components/About"
+import AnimateOpacity from "@/components/AnimationOpacity"
 import Bio from "@/components/Bio"
 import Commands from "@/components/Commands"
 import Contact from "@/components/Contact"
@@ -157,7 +158,9 @@ export default function Home() {
         >
           <Stack gap={20} m={0} style={{ margin: 0 }}>
             {rowIds.map((rowId, index) => (
-              <Box key={index}>{renderComponent(rowId)}</Box>
+              <AnimateOpacity key={index}>
+                {renderComponent(rowId)}
+              </AnimateOpacity>
             ))}
           </Stack>
         </ScrollArea>
