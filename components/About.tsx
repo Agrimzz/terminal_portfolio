@@ -34,7 +34,23 @@ function About() {
         <Text>about</Text>
       </Group>
       <Box ml={30}>
-        <Text>About</Text>
+        <Stack gap={5}>
+          <Text fz={32} c="#fde745">
+            What is Terminal Portfolio?
+          </Text>
+          <Text fz={18} c="#fff">
+            The Terminal Portfolio is a unique showcase designed to navigate
+            through portfolios in a terminal-style interface.
+          </Text>
+        </Stack>
+        <Stack gap={5} mt={16}>
+          <Text fz={32} c="#fde745">
+            Tech Stack
+          </Text>
+          <Text fz={18} c="#fff">
+            This site is built using NextJS, Typescript and MantineUI library.
+          </Text>
+        </Stack>
       </Box>
     </Stack>
   )

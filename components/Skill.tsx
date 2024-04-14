@@ -1,6 +1,15 @@
 import { getCurrentTime } from "@/utlis/datetime"
-import { Box, Group, Stack, Text } from "@mantine/core"
+import { Box, Group, SimpleGrid, Stack, Text } from "@mantine/core"
 import { ArrowFatLineRight, Folder, GitBranch } from "@phosphor-icons/react"
+import {
+  IconBrandMysql,
+  IconBrandNextjs,
+  IconBrandPhp,
+  IconBrandReact,
+  IconBrandTailwind,
+  IconBrandTypescript,
+  IconSql,
+} from "@tabler/icons-react"
 import React from "react"
 
 function Skill() {
@@ -34,7 +43,32 @@ function Skill() {
         <Text>skills</Text>
       </Group>
       <Box ml={30}>
-        <Text>Skills</Text>
+        <SimpleGrid cols={2}>
+          <Group align="center" gap={8}>
+            <IconBrandReact stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>React</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconBrandTypescript stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>Typescript</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconBrandNextjs stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>Next.js</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconBrandTailwind stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>Tailwindcss</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconBrandPhp stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>php</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconSql stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>Mysql</Text>
+          </Group>
+        </SimpleGrid>
       </Box>
     </Stack>
   )

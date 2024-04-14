@@ -1,5 +1,5 @@
 import { getCurrentTime } from "@/utlis/datetime"
-import { Box, Group, Stack, Text } from "@mantine/core"
+import { Box, Group, SimpleGrid, Stack, Text } from "@mantine/core"
 import { ArrowFatLineRight, Folder, GitBranch } from "@phosphor-icons/react"
 import React from "react"
 
@@ -34,7 +34,20 @@ function Contact() {
         <Text>contact</Text>
       </Group>
       <Box ml={30}>
-        <Text>Contact</Text>
+        <SimpleGrid cols={2} w={400}>
+          <Text fz={18} c="#fde745">
+            Phone Number
+          </Text>
+          <Text fz={18} c="#fff" td="underline">
+            9840252973
+          </Text>
+          <Text fz={18} c="#fde745">
+            Email
+          </Text>
+          <Text fz={18} c="#fff" td="underline">
+            agrimp91@gmail.com
+          </Text>
+        </SimpleGrid>
       </Box>
     </Stack>
   )

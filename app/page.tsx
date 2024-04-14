@@ -9,6 +9,7 @@ import Skill from "@/components/Skill"
 import UserInput from "@/components/UserInput"
 import Welcome from "@/components/Welcome"
 import {
+  Alert,
   BackgroundImage,
   Box,
   Flex,
@@ -37,7 +38,7 @@ export const defaultPath = (
 )
 
 export default function Home() {
-  const [rowIds, setRowIds] = useState<number[]>([1, 2, 3, 4])
+  const [rowIds, setRowIds] = useState<number[]>([1, 2, 4])
 
   const renderComponent = (rowId: number) => {
     switch (rowId) {
@@ -87,7 +88,9 @@ export default function Home() {
       case 10:
         return (
           <Stack gap={20}>
-            <Text>Invalid input. Type help to view list of commands.</Text>
+            <Text c="red">
+              Command not found. Type help to view list of commands.
+            </Text>
             <UserInput id={rowId} setRowIds={setRowIds} />
           </Stack>
         )
@@ -110,8 +113,18 @@ export default function Home() {
           flexDirection: "column",
         }}
       >
+        <Alert
+          variant="filled"
+          color="blue"
+          title="Design not for mobile view"
+          style={{ position: "absolute", zIndex: 99, top: 150 }}
+          hiddenFrom="md"
+        >
+          For best experience please view in PC. This design is not for mobile
+          view.
+        </Alert>
         <Flex
-          w={{ base: "90%", md: 1000 }}
+          w={{ base: "90%", md: 900 }}
           h={50}
           bg="#3b3b3f"
           justify="space-between"
@@ -133,7 +146,7 @@ export default function Home() {
         </Flex>
 
         <ScrollArea
-          w={{ base: "90%", md: 1000 }}
+          w={{ base: "90%", md: 900 }}
           h={500}
           p="sm"
           c="#fff"

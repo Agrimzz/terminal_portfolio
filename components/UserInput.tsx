@@ -4,14 +4,25 @@ import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, Stack, Text, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { ArrowFatLineRight } from "@phosphor-icons/react"
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
+import classes from "./userinput.module.css"
 
 function UserInput({ rowIds, setRowIds }: any) {
+  const [disabled, setDisabled] = useState<boolean>(false)
   const form = useForm({
     initialValues: {
       userInput: "",
     },
   })
+
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    // Focus the input element when the component mounts or updates
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [])
 
   const handleSubmit = (values: any) => {
     switch (values.userInput) {
@@ -40,6 +51,7 @@ function UserInput({ rowIds, setRowIds }: any) {
       default:
         setRowIds((prevRowIds: number[]) => [...prevRowIds, 10])
     }
+    setDisabled(true)
   }
   return (
     <Stack gap={10}>
@@ -58,9 +70,12 @@ function UserInput({ rowIds, setRowIds }: any) {
           })}
         >
           <TextInput
+            ref={inputRef}
             w={600}
-            color="#fff"
+            c="#fff"
             variant="unstyled"
+            disabled={disabled}
+            classNames={{ root: classes.root }}
             placeholder="Type help to view list of commands"
             {...form.getInputProps("userInput")}
           />

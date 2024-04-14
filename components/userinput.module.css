@@ -1,0 +1,8 @@
+.root input {
+  color: #fff;
+}
+
+.root :disabled {
+  background: none;
+  color: #fff;
+}
