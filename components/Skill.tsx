@@ -2,7 +2,6 @@ import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, SimpleGrid, Stack, Text } from "@mantine/core"
 import { ArrowFatLineRight, Folder, GitBranch } from "@phosphor-icons/react"
 import {
-  IconBrandMysql,
   IconBrandNextjs,
   IconBrandPhp,
   IconBrandReact,

@@ -22,6 +22,7 @@ import {
 } from "@mantine/core"
 import { Atom, Folder } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
 
 export const defaultPath = (
   <Group gap={0}>
@@ -124,46 +125,67 @@ export default function Home() {
           For best experience please view in PC. This design is not for mobile
           view.
         </Alert>
-        <Flex
-          w={{ base: "90%", md: 900 }}
-          h={50}
-          bg="#3b3b3f"
-          justify="space-between"
-          style={{ borderRadius: "10px 10px 0 0" }}
-          px="md"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "linear" }}
         >
-          <Group gap={10}>
-            <Box w={20} h={20} bg="#f95955" style={{ borderRadius: "20px" }} />
-            <Box w={20} h={20} bg="#e5bf3c" style={{ borderRadius: "20px" }} />
-            <Box w={20} h={20} bg="#57c038" style={{ borderRadius: "20px" }} />
-          </Group>
+          <Flex
+            w={{ base: "90%", md: 900 }}
+            h={50}
+            bg="#3b3b3f"
+            justify="space-between"
+            style={{ borderRadius: "10px 10px 0 0" }}
+            px="md"
+          >
+            <Group gap={10}>
+              <Box
+                w={20}
+                h={20}
+                bg="#f95955"
+                style={{ borderRadius: "20px" }}
+              />
+              <Box
+                w={20}
+                h={20}
+                bg="#e5bf3c"
+                style={{ borderRadius: "20px" }}
+              />
+              <Box
+                w={20}
+                h={20}
+                bg="#57c038"
+                style={{ borderRadius: "20px" }}
+              />
+            </Group>
 
-          <Group gap={0}>
-            <Atom color="#fff" size={30} />
-            <Text c="#fff">Agrimzz/terminal_portfolio</Text>
-          </Group>
+            <Group gap={0}>
+              <Atom color="#fff" size={30} />
+              <Text c="#fff">Agrimzz/terminal_portfolio</Text>
+            </Group>
 
-          <Space />
-        </Flex>
+            <Space />
+          </Flex>
 
-        <ScrollArea
-          w={{ base: "90%", md: 900 }}
-          h={500}
-          p="sm"
-          c="#fff"
-          bg="rgba(28, 38, 43, 0.9)"
-          style={{
-            borderRadius: "0 0 10px 10px",
-          }}
-        >
-          <Stack gap={20} m={0} style={{ margin: 0 }}>
-            {rowIds.map((rowId, index) => (
-              <AnimateOpacity key={index}>
-                {renderComponent(rowId)}
-              </AnimateOpacity>
-            ))}
-          </Stack>
-        </ScrollArea>
+          <ScrollArea
+            w={{ base: "90%", md: 900 }}
+            h={500}
+            p="sm"
+            c="#fff"
+            bg="rgba(28, 38, 43, 0.9)"
+            style={{
+              borderRadius: "0 0 10px 10px",
+            }}
+          >
+            <Stack gap={20} m={0} style={{ margin: 0 }}>
+              {rowIds.map((rowId, index) => (
+                <AnimateOpacity key={index}>
+                  {renderComponent(rowId)}
+                </AnimateOpacity>
+              ))}
+            </Stack>
+          </ScrollArea>
+        </motion.div>
       </BackgroundImage>
     </Box>
   )

@@ -1,10 +1,10 @@
 import { defaultPath } from "@/app/page"
 import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, Stack, Text } from "@mantine/core"
-import { ArrowFatLineRight } from "@phosphor-icons/react/dist/ssr"
 import React from "react"
 import AnimateText from "./AnimateText"
 import AnimateOpacity from "./AnimationOpacity"
+import { TypeAnimation } from "react-type-animation"
 
 function Welcome() {
   return (
@@ -16,11 +16,20 @@ function Welcome() {
             <Text>{getCurrentTime()}</Text>
           </Box>
         </Group>
-        {/* <Text fz={50} fw={800} id="#welcome">
-        WELCOME TO MY PORTFOLIO
-      </Text> */}
-        <AnimateText text="WELCOME TO MY PORTFOLO" size={50} />
-        <AnimateText text="Type help to view list of commands." size={16} />
+
+        <TypeAnimation
+          sequence={[
+            "WELCOME TO MY PORTFOLIO",
+            1000,
+            "Type help to get started",
+            1000,
+          ]}
+          wrapper="span"
+          speed={50}
+          style={{ fontSize: "3em", display: "inline-block" }}
+          repeat={Infinity}
+        />
+        <Text fz={16}>Type help to view list of commands.</Text>
       </Stack>
     </AnimateOpacity>
   )

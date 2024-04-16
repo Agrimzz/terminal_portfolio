@@ -7,7 +7,7 @@ function AnimateOpacity({ children }: any) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ when: "beforeChildren", delay: 0.5 }}
+      transition={{ staggerChildren: 2 }}
     >
       {children}
     </motion.div>
