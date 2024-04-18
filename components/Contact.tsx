@@ -1,9 +1,8 @@
-import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, SimpleGrid, Stack, Text } from "@mantine/core"
 import { ArrowFatLineRight, Folder, GitBranch } from "@phosphor-icons/react"
 import React from "react"
 
-function Contact() {
+function Contact({ time }: any) {
   return (
     <Stack gap={10}>
       <Group justify="space-between">
@@ -26,7 +25,7 @@ function Contact() {
           </Box>
         </Group>
         <Box bg="#fde745" c="#000" px="sm">
-          <Text>{getCurrentTime()}</Text>
+          <Text>{time}</Text>
         </Box>
       </Group>
       <Group>

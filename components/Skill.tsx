@@ -1,4 +1,3 @@
-import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, SimpleGrid, Stack, Text } from "@mantine/core"
 import { ArrowFatLineRight, Folder, GitBranch } from "@phosphor-icons/react"
 import {
@@ -11,7 +10,7 @@ import {
 } from "@tabler/icons-react"
 import React from "react"
 
-function Skill() {
+function Skill({ time }: any) {
   return (
     <Stack gap={10}>
       <Group justify="space-between">
@@ -34,12 +33,12 @@ function Skill() {
           </Box>
         </Group>
         <Box bg="#fde745" c="#000" px="sm">
-          <Text>{getCurrentTime()}</Text>
+          <Text>{time}</Text>
         </Box>
       </Group>
       <Group>
         <ArrowFatLineRight size={20} />
-        <Text>skills</Text>
+        <Text>skill</Text>
       </Group>
       <Box ml={30}>
         <SimpleGrid cols={2}>

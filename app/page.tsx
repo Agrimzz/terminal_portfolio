@@ -21,8 +21,9 @@ import {
   Text,
 } from "@mantine/core"
 import { Atom, Folder } from "@phosphor-icons/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
+import { getCurrentTime } from "@/utlis/datetime"
 
 export const defaultPath = (
   <Group gap={0}>
@@ -40,51 +41,55 @@ export const defaultPath = (
 )
 
 export default function Home() {
-  const [rowIds, setRowIds] = useState<number[]>([1, 2, 4])
+  const [rowIds, setRowIds] = useState([
+    { id: 1, time: getCurrentTime() },
+    { id: 2, time: getCurrentTime() },
+    { id: 4, time: getCurrentTime() },
+  ])
 
-  const renderComponent = (rowId: number) => {
+  const renderComponent = (rowId: number, time: any) => {
     switch (rowId) {
       case 1:
         return <Date />
       case 2:
-        return <Welcome />
+        return <Welcome time={time} />
       case 3:
         return <Commands />
       case 4:
-        return <UserInput id={rowId} setRowIds={setRowIds} />
+        return <UserInput id={rowId} setRowIds={setRowIds} time={time} />
       case 5:
         return (
           <Stack gap={20}>
-            <Bio />
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <Bio time={time} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       case 6:
         return (
           <Stack gap={20}>
-            <Skill />
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <Skill time={time} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       case 7:
         return (
           <Stack gap={20}>
-            <Contact />
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <Contact time={time} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       case 8:
         return (
           <Stack gap={20}>
-            <About />
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <About time={time} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       case 9:
         return (
           <Stack gap={20}>
-            <Help />
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <Help time={time} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       case 10:
@@ -93,7 +98,7 @@ export default function Home() {
             <Text c="red">
               Command not found. Type help to view list of commands.
             </Text>
-            <UserInput id={rowId} setRowIds={setRowIds} />
+            <UserInput id={rowId} setRowIds={setRowIds} time={time} />
           </Stack>
         )
       default:
@@ -178,9 +183,9 @@ export default function Home() {
             }}
           >
             <Stack gap={20} m={0} style={{ margin: 0 }}>
-              {rowIds.map((rowId, index) => (
+              {rowIds.map((row, index) => (
                 <AnimateOpacity key={index}>
-                  {renderComponent(rowId)}
+                  {renderComponent(row.id, row.time)}
                 </AnimateOpacity>
               ))}
             </Stack>

@@ -7,7 +7,7 @@ import { ArrowFatLineRight } from "@phosphor-icons/react"
 import React, { useEffect, useRef, useState } from "react"
 import classes from "./userinput.module.css"
 
-function UserInput({ rowIds, setRowIds }: any) {
+function UserInput({ rowIds, setRowIds, time }: any) {
   const [disabled, setDisabled] = useState<boolean>(false)
   const form = useForm({
     initialValues: {
@@ -24,40 +24,57 @@ function UserInput({ rowIds, setRowIds }: any) {
   }, [])
 
   const handleSubmit = (values: any) => {
+    const currentTime = getCurrentTime()
+
     switch (values.userInput) {
       case "help":
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 9])
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 9, time: currentTime },
+        ])
         break
       case "bio":
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 5])
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 5, time: currentTime },
+        ])
         break
       case "skill":
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 6])
-
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 6, time: currentTime },
+        ])
         break
       case "contact":
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 7])
-
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 7, time: currentTime },
+        ])
         break
       case "about":
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 8])
-
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 8, time: currentTime },
+        ])
         break
       case "cls":
-        setRowIds([4])
+        setRowIds([{ id: 4, time: currentTime }])
         break
-
       default:
-        setRowIds((prevRowIds: number[]) => [...prevRowIds, 10])
+        setRowIds((prevRows: any[]) => [
+          ...prevRows,
+          { id: 10, time: currentTime },
+        ])
     }
     setDisabled(true)
   }
+
   return (
     <Stack gap={10}>
       <Group justify="space-between">
         {defaultPath}
         <Box bg="#fde745" c="#000" px="sm">
-          <Text>{getCurrentTime()}</Text>
+          <Text>{time}</Text>
         </Box>
       </Group>
       <Group>
