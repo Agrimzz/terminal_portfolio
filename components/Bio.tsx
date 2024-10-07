@@ -5,6 +5,7 @@ import {
   GitBranch,
   GithubLogo,
   InstagramLogo,
+  LinkedinLogo,
 } from "@phosphor-icons/react"
 import React from "react"
 
@@ -40,10 +41,10 @@ function Bio({ time }: any) {
       </Group>
       <Box ml={35}>
         <Text fz={18}>
-          Hello I'm Agrim Pradhananga, a third-year BCA student with a passion
-          for frontend development. I'm dedicated to refining my skills,
-          crafting engaging user experiences, and staying updated with the
-          latest technologies to make meaningful contributions to web
+          Hello I{`'`}m Agrim Pradhananga, a third-year BCA student with a
+          passion for frontend development. I{`'`}m dedicated to refining my
+          skills, crafting engaging user experiences, and staying updated with
+          the latest technologies to make meaningful contributions to web
           development.
         </Text>
         <SimpleGrid cols={2} mt={24}>
@@ -71,6 +72,21 @@ function Bio({ time }: any) {
               fz={18}
             >
               @__agrim__
+            </Anchor>
+          </Group>
+          <Group align="center" gap={10}>
+            <Group gap={0}>
+              <LinkedinLogo color="#fde745" size={20} />
+              <Text c="#fde745" fz={18}>
+                Linkedin
+              </Text>
+            </Group>
+            <Anchor
+              href="https://www.linkedin.com/in/agrim-pradhananga-83690b278/"
+              target="blank"
+              fz={18}
+            >
+              Agrim Pradhananga
             </Anchor>
           </Group>
         </SimpleGrid>

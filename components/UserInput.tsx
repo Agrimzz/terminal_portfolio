@@ -1,11 +1,11 @@
 "use client"
-import { defaultPath } from "@/app/page"
 import { getCurrentTime } from "@/utlis/datetime"
 import { Box, Group, Stack, Text, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import { ArrowFatLineRight } from "@phosphor-icons/react"
 import React, { useEffect, useRef, useState } from "react"
 import classes from "./userinput.module.css"
+import DefaultPath from "./DefaultPath"
 
 function UserInput({ rowIds, setRowIds, time }: any) {
   const [disabled, setDisabled] = useState<boolean>(false)
@@ -72,7 +72,7 @@ function UserInput({ rowIds, setRowIds, time }: any) {
   return (
     <Stack gap={10}>
       <Group justify="space-between">
-        {defaultPath}
+        <DefaultPath />
         <Box bg="#fde745" c="#000" px="sm">
           <Text>{time}</Text>
         </Box>

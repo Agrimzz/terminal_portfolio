@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import React from "react"
 
-function AnimateOpacity({ children }: any) {
+function AnimateOpacity({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}

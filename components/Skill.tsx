@@ -4,6 +4,7 @@ import {
   IconBrandNextjs,
   IconBrandPhp,
   IconBrandReact,
+  IconBrandReactNative,
   IconBrandTailwind,
   IconBrandTypescript,
   IconSql,
@@ -65,6 +66,10 @@ function Skill({ time }: any) {
           <Group align="center" gap={8}>
             <IconSql stroke={2} color="#fde745" size={30} />
             <Text fz={20}>Mysql</Text>
+          </Group>
+          <Group align="center" gap={8}>
+            <IconBrandReactNative stroke={2} color="#fde745" size={30} />
+            <Text fz={20}>React Native</Text>
           </Group>
         </SimpleGrid>
       </Box>

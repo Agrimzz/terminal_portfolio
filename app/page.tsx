@@ -25,21 +25,6 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { getCurrentTime } from "@/utlis/datetime"
 
-export const defaultPath = (
-  <Group gap={0}>
-    <Text>|---</Text>
-    <Box bg="#2682ea" c="#fff" px="sm">
-      <Text>~/agrim</Text>
-    </Box>
-    <Box bg="#44a244" c="#fff" px="sm">
-      <Group gap={0}>
-        <Folder size={20} />
-        <Text>/portfolio</Text>
-      </Group>
-    </Box>
-  </Group>
-)
-
 export default function Home() {
   const [rowIds, setRowIds] = useState([
     { id: 1, time: getCurrentTime() },

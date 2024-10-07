@@ -1,15 +1,15 @@
-import { defaultPath } from "@/app/page"
 import { Box, Group, Stack, Text } from "@mantine/core"
 import React from "react"
 import AnimateOpacity from "./AnimationOpacity"
 import { TypeAnimation } from "react-type-animation"
+import DefaultPath from "./DefaultPath"
 
 function Welcome({ time }: any) {
   return (
     <AnimateOpacity>
       <Stack gap={10}>
         <Group justify="space-between">
-          {defaultPath}
+          <DefaultPath />
           <Box bg="#fde745" c="#000" px="sm">
             <Text>{time}</Text>
           </Box>
